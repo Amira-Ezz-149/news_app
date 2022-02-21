@@ -149,13 +149,14 @@ Widget defaultFormField({
       ),
     );
 
+
 Widget articleBuilder(list, context, {isSearch = false}) =>
     list.length > 0 ?
     ListView.separated(
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index) => buildArticleItem(list[index], context),
       separatorBuilder: (context, index) => myDivider(),
-      itemCount: 10,) : isSearch ? Container() : const Center(child: CircularProgressIndicator());
+      itemCount:list.lenght,) : isSearch ? Container() : const Center(child: CircularProgressIndicator());
 
 
 ///navigator method

@@ -5,46 +5,37 @@ import 'package:news_app/cubit/states.dart';
 import 'package:news_app/shared/components.dart';
 
 class SearchScreen extends StatelessWidget {
-  const SearchScreen({Key? key}) : super(key: key);
+  var searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController searchController = TextEditingController();
-var list = NewsCubit.get(context).searchList;
-
     return BlocConsumer<NewsCubit, NewsStates>(
-      listener: ( context,  state) {},
-      builder: ( context,  state) {
+      listener: (context, state) {},
+      builder: (context, state) {
+        var list = NewsCubit.get(context).searchList;
         return Scaffold(
           appBar: AppBar(),
           body: Column(
-            children: <Widget>[
+            children: [
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(20.0),
                 child: defaultFormField(
-                    controller: searchController,
-                    type: TextInputType.text,
-                    onChanged: (value) {
-                      NewsCubit.get(context).getSearch(value);
-                    },
-                    validate: (value) {
-                      if (value.isEmpty || value == null) {
-                        return 'search must not be empty';
-                      }
-                      return null;
-                    },
-                    label: 'search',
-                    prefix: Icons.search),
-              ),
-              // Expanded(child: buildArticleItem(list, context)),
-
-              Expanded(
-                child: articleBuilder(
-                  list,
-                  context,
-                  isSearch: true,
+                  onChanged: (String? value) {
+                    NewsCubit.get(context).getSearch(value!);
+                  },
+                  controller: searchController,
+                  type: TextInputType.text,
+                  validate: (String value) {
+                    if (value.isEmpty) {
+                      return 'search must not be empty';
+                    }
+                    return null;
+                  },
+                  label: 'Search',
+                  prefix: Icons.search,
                 ),
               ),
+              Expanded(child: articleBuilder(list, context, isSearch: true,),),
             ],
           ),
         );

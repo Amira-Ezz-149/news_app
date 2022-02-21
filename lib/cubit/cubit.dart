@@ -57,12 +57,12 @@ class NewsCubit extends Cubit<NewsStates> {
       'category': 'business',
       'apikey': 'eaabb01e26bc4385bacea5b5e33f06e0',
     }).then((value) {
-      // print(value.data['articles'][0]['title']);
+      // debugPrint(value.data['articles'][0]['title']);
       business = value.data['articles'];
-      print(business[0]['title']);
+      debugPrint(business[0]['title']);
       emit(NewsGetBusinessSuccessState());
     }).catchError((error) {
-      print(error.toString());
+      debugPrint(error.toString());
       emit(NewsGetBusinessErrorState(error.toString()));
     });
   }
@@ -79,12 +79,12 @@ class NewsCubit extends Cubit<NewsStates> {
         'category': 'sports',
         'apikey': 'eaabb01e26bc4385bacea5b5e33f06e0',
       }).then((value) {
-        // print(value.data['articles'][0]['title']);
+        // debugPrint(value.data['articles'][0]['title']);
         sports = value.data['articles'];
-        print(sports[0]['title']);
+        debugPrint(sports[0]['title']);
         emit(NewsGetSportsSuccessState());
       }).catchError((error) {
-        print(error.toString());
+        debugPrint(error.toString());
         emit(NewsGetSportsErrorState(error.toString()));
       });
     } else
@@ -102,12 +102,12 @@ class NewsCubit extends Cubit<NewsStates> {
         'category': 'science',
         'apikey': 'eaabb01e26bc4385bacea5b5e33f06e0',
       }).then((value) {
-        // print(value.data['articles'][0]['title']);
+        // debugPrint(value.data['articles'][0]['title']);
         science = value.data['articles'];
-        print(science[0]['title']);
+        debugPrint(science[0]['title']);
         emit(NewsGetScienceSuccessState());
       }).catchError((error) {
-        print(error.toString());
+        debugPrint(error.toString());
         emit(NewsGetScienceErrorState(error.toString()));
       });
     } else
@@ -125,16 +125,18 @@ class NewsCubit extends Cubit<NewsStates> {
       'q': value,
       'apikey': 'eaabb01e26bc4385bacea5b5e33f06e0',
     }).then((value) {
-      // print(value.data['articles'][0]['title']);
+      // debugPrint(value.data['articles'][0]['title']);
       searchList = value.data['articles'];
-      print(searchList[0]['title']);
+      debugPrint(searchList[0]['title']);
       emit(NewsGetSearchSuccessState());
     }).catchError((error) {
-      print(error.toString());
+      debugPrint(error.toString());
       emit(NewsGetSearchErrorState(error.toString()));
     });
 
   }
+
+
 
   // var imgVariable = NetworkImage("https://th.bing.com/th/id/R.0e6dd5b2fb2a9f8b1a694f322ae9b5a4?rik=8dz0jEx2rxzLaA&riu=http%3a%2f%2ffiles.maas1.com%2fimages_cache%2f130326130347S6oJ.jpg&ehk=hn9Yp81s7r2XZimuNgQj%2ft2KKghRk2Z%2f1Piw6PYiZic%3d&risl=&pid=ImgRaw&r=0");
   var imgVariable = AssetImage("assets/images/diamond.webp");
