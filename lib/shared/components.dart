@@ -10,7 +10,7 @@ Widget buildArticleItem(article, context) {
   );
 
   return InkWell(
-    onTap: (){
+    onTap: () {
       navigateTo(context: context, widget: WebViewScreen(url: article['url'],));
     },
     child: Padding(
@@ -86,6 +86,7 @@ Widget buildArticleItem(article, context) {
   );
 }
 
+
 Widget myDivider() {
   return Padding(
     padding: const EdgeInsetsDirectional.only(
@@ -112,7 +113,7 @@ Widget defaultFormField({
   required TextEditingController controller,
   required TextInputType type,
   required Function onChanged,
-   final validate,
+  final validate,
   required String label,
   required IconData prefix,
   IconData? suffix,
@@ -147,6 +148,14 @@ Widget defaultFormField({
         border: const OutlineInputBorder(),
       ),
     );
+
+Widget articleBuilder(list, context, {isSearch = false}) =>
+    list.length > 0 ?
+    ListView.separated(
+      physics: const BouncingScrollPhysics(),
+      itemBuilder: (context, index) => buildArticleItem(list[index], context),
+      separatorBuilder: (context, index) => myDivider(),
+      itemCount: 10,) : isSearch ? Container() : const Center(child: CircularProgressIndicator());
 
 
 ///navigator method

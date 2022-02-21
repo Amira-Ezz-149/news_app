@@ -36,7 +36,15 @@ var list = NewsCubit.get(context).searchList;
                     label: 'search',
                     prefix: Icons.search),
               ),
-              Expanded(child: buildArticleItem(list, context)),
+              // Expanded(child: buildArticleItem(list, context)),
+
+              Expanded(
+                child: articleBuilder(
+                  list,
+                  context,
+                  isSearch: true,
+                ),
+              ),
             ],
           ),
         );
